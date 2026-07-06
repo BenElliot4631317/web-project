@@ -1,13 +1,22 @@
-import React, { Children } from 'react'
+import React from 'react'
 
 type ButtonProps = {
-    children: React.ReactNode
+    children: React.ReactNode;
+    variant?: "primary" | "secondary" | "danger";
 };
 
-export default function button({ children }: ButtonProps) {
+export default function Button({ children, variant="primary" }: ButtonProps) {
+
+  const styles = {
+    primary: "bg-[#F3E37C] hover:bg-[#F3D34A]",
+    secondary: "bg-[#FFFFFF] hover:bg-[#F2F2F7]",
+    danger: ""
+  };
+
+
   return (
     <button
-    className='rounded-b-lg bg-white shadow px-[35px] py-[12px]'>
+    className={`rounded-[12.5px] shadow-md px-[35px] py-[12px] transition ${styles[variant]}`}>
         {children}
     </button>
   )
