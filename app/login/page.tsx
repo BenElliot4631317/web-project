@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
+import Input from "@/components/Input";
 
 export default function page() {
   return (
@@ -11,15 +12,15 @@ export default function page() {
         <div className="bg-white w-full h-full flex-1 flex justify-center items-center">
           <div className="w-[300px] h-auto">
             <form>
-              <input
+              <Input
                 placeholder="请输入您的用户名"
-                className="bg-transparent w-full h-[50px] px-[24px] rounded-[8px] border border-gray-200 transition"
-              ></input>
-              <input
+                className="mt-[24px]"
+              ></Input>
+              <Input
                 placeholder="请输入您的密码"
-                className="bg-transparent w-full h-[50px] px-[24px] rounded-[8px] border border-gray-200 mt-[16px] transition"
+                className="mt-[24px]"
                 type="password"
-              ></input>
+              ></Input>
               <div className="text-right mr-[8px] mt-[18px]">忘记密码</div>
               <div className="flex row justify-center gap-[48px] mt-[18px]">
                 <div>
