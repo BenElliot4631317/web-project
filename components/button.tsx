@@ -1,7 +1,6 @@
 import React from 'react'
 
-type ButtonProps = {
-    children: React.ReactNode;
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     variant?: "primary" | "secondary" | "danger";
 };
 
@@ -16,7 +15,7 @@ export default function Button({ children, variant="primary" }: ButtonProps) {
 
   return (
     <button
-    className={`rounded-[12.5px] shadow-md px-[35px] py-[12px] transition ${styles[variant]}`}>
+    className={`rounded-[12.5px] shadow px-[35px] py-[12px] transition ${styles[variant]}`}>
         {children}
     </button>
   )

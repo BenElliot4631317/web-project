@@ -9,7 +9,7 @@ type InputProps = {
   name?: string;
   bordered?: boolean;
   leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export default function Input({
@@ -21,7 +21,7 @@ export default function Input({
   name,
   bordered = true,
   leftIcon,
-  rightIcon,
+  onChange,
 }: InputProps) {
   return (
     <div className="relative w-full">
@@ -35,16 +35,11 @@ export default function Input({
         type={type}
         placeholder={placeholder}
         value={value}
-        className={`w-full h-[48px] px-[24px] rounded-[8px] ${leftIcon ? "pl-[48px]" : "px-[24px]"} ${rightIcon ? "pr-[48px]" : ""} hover:shadow-md focus:ring-1 focus:ring-[#EEA243] focus:outline-none transition ${bordered ? "border border-gray-300" : "border-none"} ${className}`}
+        className={`w-full h-[48px] px-[24px] rounded-[8px] ${leftIcon ? "pl-[48px]" : "px-[24px]"} hover:shadow-md focus:ring-1 focus:ring-[#EEA243] focus:outline-none focus:border-transparent transition ${bordered ? "border border-gray-300" : "border-none"} ${className}`}
         disabled={disabled}
         name={name}
+        onChange={onChange}
       />
-
-      {rightIcon && (
-        <div className="absolute right-[16px] top-1/2 -translate-y-1/2">
-          {rightIcon}
-        </div>
-      )}
     </div>
   );
 }
