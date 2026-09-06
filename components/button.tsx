@@ -4,7 +4,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     variant?: "primary" | "secondary" | "danger";
 };
 
-export default function Button({ children, variant="primary" }: ButtonProps) {
+export default function Button({ children, variant="primary", ...props }: ButtonProps) {
 
   const styles = {
     primary: "bg-[#F3E37C] hover:bg-[#F3D34A]",
@@ -15,7 +15,8 @@ export default function Button({ children, variant="primary" }: ButtonProps) {
 
   return (
     <button
-    className={`rounded-[12.5px] shadow px-[35px] py-[12px] transition ${styles[variant]}`}>
+        {...props}
+    className={`rounded-[16px] px-[35px] py-[12px] transition border border-[#D1D1D6] font-bold text-[#5A5A5A] ${styles[variant]}`}>
         {children}
     </button>
   )

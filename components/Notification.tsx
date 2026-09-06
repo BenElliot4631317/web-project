@@ -1,38 +1,45 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
 interface NotificationProps {
-  message: string;
-  type?: "success" | "error";
+    message: string;
+    type?: "success" | "error";
 }
 
 export default function Notification({
-  message,
-  type = "success",
-}: NotificationProps) {
+                                         message,
+                                         type = "success",
+                                     }: NotificationProps) {
 
-  const [visible, setVisible] = useState(true);
+    // shown 控制可见状态的 class（触发进/出场过渡），render 控制 DOM 是否存在
+    const [shown, setShown] = useState(false);
+    const [render, setRender] = useState(true);
 
-  useEffect( () => {
-    const timer = setTimeout( () => {
-      setVisible(false);
-    }, 3000);
+    useEffect(() => {
+        // 等浏览器完成首次渲染（隐藏态）后再切入可见态，从而触发过渡动画
+        const enterTimer = setTimeout(() => setShown(true), 20);
+        const leaveTimer = setTimeout(() => setShown(false), 3020);
+        const removeTimer = setTimeout(() => setRender(false), 3320);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
+        return () => {
+            clearTimeout(enterTimer);
+            clearTimeout(leaveTimer);
+            clearTimeout(removeTimer);
+        };
+    }, []);
 
-  if (!visible) {
-    return null;
-  }
+    if (!render) {
+        return null;
+    }
 
-  return (
-    <div
-      className={`fixed top-5 right-5 px-6 py-3 rounded-lg shadow-lg transition text-white ${type === "success" ? "bg-green-500" : "bg-red-500"}`}
-    >
-      {message}
-    </div>
-  );
+    return (
+        <div
+            className={`fixed top-5 right-5 z-50 px-6 py-3 rounded-lg shadow-lg text-white transition-all duration-300 ease-out ${
+                shown ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"
+            } ${type === "success" ? "bg-green-500" : "bg-red-500"}`}
+        >
+            {message}
+        </div>
+    );
 }

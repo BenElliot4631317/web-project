@@ -17,17 +17,17 @@ function navbar() {
         </div>
       </div>
       <div className="flex items-center w-[400px] h-[50px]">
-        <Input type="search" placeholder="搜索..." className="bg-[#F2F2F7]" bordered={false} leftIcon={<Search size={20} className="text-black"/>} />
+        <Input type="search" placeholder="搜索..." bgColor="#F2F2F7" bordered={false} leftIcon={<Search size={20} className="text-black"/>} />
       </div>
       <div className="flex">
         <div className="mr-[42px]">
           <Link href="/login">
-            <Button variant="secondary">登录</Button>
+            <Button variant="primary">登录</Button>
           </Link>
 
         </div>
         <Link href="/register">
-          <Button variant="primary">注册</Button>
+          <Button variant="secondary">注册</Button>
         </Link>
       </div>
     </div>
